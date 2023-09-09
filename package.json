@@ -1,0 +1,23 @@
+{
+  "name": "is-it-art-gallery",
+  "version": "1.0.0",
+  "description": "Is-it-art-gallery",
+  "main": "index.htm",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elofledning/is-it-art-gallery.git"
+  },
+  "author": "elofledning",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elofledning/is-it-art-gallery/issues"
+  },
+  "homepage": "https://github.com/elofledning/is-it-art-gallery#readme",
+  "dependencies": {
+    "three": "^0.156.1",
+    "three-orbitcontrols": "^2.110.3"
+  }
+}
