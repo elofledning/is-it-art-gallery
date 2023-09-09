@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>"Is it art" Gallery</title>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // Initialize Three.js scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create an array of image URLs
+        const imageUrls = [
+            'images/Cube.png',
+            'images/Dora.png',
+            'images/Metro.png',
+        ];
+
+        // Create an array to hold image planes
+        const imagePlanes = [];
+
+        // Load images and create planes
+        imageUrls.forEach((url, index) => {
+            const texture = new THREE.TextureLoader().load(url);
+            const geometry = new THREE.PlaneGeometry(1, 1);
+            const material = new THREE.MeshBasicMaterial({ map: texture });
+            const plane = new THREE.Mesh(geometry, material);
+            
+            // Position the planes in a circle
+            const angle = (index / imageUrls.length) * Math.PI * 2;
+            const radius = 5;
+            plane.position.x = Math.cos(angle) * radius;
+            plane.position.z = Math.sin(angle) * radius;
+
+            scene.add(plane);
+            imagePlanes.push(plane);
+        });
+
+        // Add orbit controls for navigation
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        // Set camera position
+        camera.position.set(0, 2, 10);
+
+        // Render loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+</body>
+</html>
